@@ -1,4 +1,8 @@
 Magicdust::Application.routes.draw do
+
+
+  root :to => 'welcome#index'
+
   resources :contractors
 
 
@@ -7,7 +11,7 @@ Magicdust::Application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  #devise_for :admin_users, ActiveAdmin::Devise.config
 
   resources :vouchers
 
