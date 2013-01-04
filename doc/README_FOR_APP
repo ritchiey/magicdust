@@ -1,0 +1,35 @@
+=== Postgres and the pg gem on OS X
+
+We use Postgres in development & test to mirror Heroku reasonably closely. Getting Postgres working on OS X can be painful. This is what I had to do:
+
+brew update
+brew install postgresql
+
+Edit /etc/sysctl.conf and enter:
+
+  kern.sysv.shmmax=1073741824
+
+Follow the instructions provided by brew for first install:
+mkdir -p ~/Library/LaunchAgents
+cp /usr/local/Cellar/postgresql/9.0.4/org.postgresql.postgres.plist ~/Library/LaunchAgents/
+launchctl load -w ~/Library/LaunchAgents/org.postgresql.postgres.plist
+
+Add the following to ~/.bash_profile:
+
+export PATH=/usr/local/Cellar/postgresql/9.0.4/bin:$PATH
+export PGDATA=/usr/local/var/postgres
+
+
+Reboot
+
+env ARCHFLAGS="-arch x86_64" gem install pg -- \
+ --with-pg-lib=/usr/local/Cellar/postgresql/9.0.4/lib/ \
+ --with-pg-include=/usr/local/Cellar/postgresql/9.0.4/include/
+
+psql postgres
+
+postgres=# create role myediary superuser login;
+
+
+Use this README file to introduce your application and point to useful places in the API for learning more.
+Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
