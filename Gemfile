@@ -13,6 +13,7 @@ gem 'pg'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
+  gem 'haml'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -21,6 +22,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'omniauth-twitter'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -51,6 +53,7 @@ gem "activeadmin"
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
+  gem 'haml-rails'
   gem "erb2haml", :group => :development
   gem 'rails-footnotes', '>= 3.7.5.rc1', :group => :development
   gem 'hpricot' # for html2haml
